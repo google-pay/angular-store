@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  margin: 20px;
+}
+
+.item-details {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+
+    .size-option,
+    .quantity-option,
+    .mat-form-field-flex {
+      background-color: #fff;
+    }
+  }
+
+  .buttons {
+    margin-top: 2rem;
+    gap: 1rem;
+
+    > * {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+:host {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+}
+
+.list-item-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item-card {
+  margin: 5px;
+  width: 175px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+img {
+  padding-top: 1rem;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.price {
+  opacity: 0.8;
+}

@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1rem;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .shipping,
+  .payment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+
+    > * {
+      grid-column: 1 / span 2;
+    }
+
+    > .partial {
+      grid-column: auto / span 1;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  mat-checkbox {
+    margin-top: 1rem;
+  }
+}
+
+.buttons {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 500px;
+  > * {
+    width: 100%;
+  }
+  grid-column: 1 / span 2;
+}
+
+@media only screen and (max-width: 800px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+}

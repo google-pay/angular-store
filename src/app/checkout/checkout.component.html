@@ -1,0 +1,106 @@
+<!--
+ Copyright 2021 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<form #f="ngForm" class="checkout-grid" (ngSubmit)="onSubmit($event, f)" novalidate>
+  <div class="shipping">
+    <h2>Shipping address</h2>
+    <div class="partial">
+      <mat-form-field appearance="standard">
+        <mat-label>First name</mat-label>
+        <input matInput [(ngModel)]="firstName" required name="firstName" autocomplete="given-name" />
+      </mat-form-field>
+    </div>
+    <div class="partial">
+      <mat-form-field appearance="standard">
+        <mat-label>Last name</mat-label>
+        <input matInput [(ngModel)]="lastName" required name="lastName" autocomplete="family-name" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Address line 1</mat-label>
+        <input matInput [(ngModel)]="address1" required name="address1" autocomplete="shipping address-line1" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Address line 2</mat-label>
+        <input matInput [(ngModel)]="address2" required name="address2" autocomplete="shipping address-line2" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>City</mat-label>
+        <input matInput [(ngModel)]="city" required name="city" autocomplete="shipping address-level2" />
+      </mat-form-field>
+    </div>
+    <div class="partial">
+      <mat-form-field appearance="standard">
+        <mat-label>State/Province/Region</mat-label>
+        <input matInput [(ngModel)]="state" required name="state" autocomplete="shipping address-level1" />
+      </mat-form-field>
+    </div>
+    <div class="partial">
+      <mat-form-field appearance="standard">
+        <mat-label>Zip / Postal code</mat-label>
+        <input matInput [(ngModel)]="zip" required name="zip" autocomplete="shipping postal-code" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Country</mat-label>
+        <input matInput [(ngModel)]="country" required name="country" autocomplete="shipping country" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox>Use this address for payment details</mat-checkbox>
+    </div>
+  </div>
+  <div class="payment">
+    <h2>Payment method</h2>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Name on card</mat-label>
+        <input matInput [(ngModel)]="cardName" required name="cardName" autocomplete="cc-name" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Card number</mat-label>
+        <input matInput [(ngModel)]="cardNumber" required name="cardNumber" autocomplete="cc-number" />
+      </mat-form-field>
+    </div>
+    <div class="partial">
+      <mat-form-field appearance="standard">
+        <mat-label>Expiry date</mat-label>
+        <input matInput [(ngModel)]="expDate" required name="expDate" autocomplete="cc-exp" />
+      </mat-form-field>
+    </div>
+    <div class="partial">
+      <mat-form-field appearance="standard">
+        <mat-label>CVV</mat-label>
+        <input matInput [(ngModel)]="cvv" required name="cvv" autocomplete="cc-csc" />
+        <mat-hint>Last three digits on signature strip</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox>Remember credit card details for next time</mat-checkbox>
+    </div>
+  </div>
+  <div class="buttons">
+    <button mat-stroked-button>Submit</button>
+  </div>
+</form>
