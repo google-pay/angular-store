@@ -16,7 +16,7 @@
 
 <div class="item-details" *ngIf="item">
   <img [src]="item.largeImage" [alt]="item.title" />
-  <div>
+  <div class="details">
     <h2>{{ item.title }}</h2>
     <p>${{ item.price.toFixed(2) }}</p>
     <div class="options">

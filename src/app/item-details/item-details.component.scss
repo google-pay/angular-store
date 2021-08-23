@@ -7,11 +7,16 @@
   max-width: 1000px;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
 
   img {
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 600px;
+  }
+
+  .details {
+    margin-right: 3rem;
   }
 
   .options {
@@ -31,6 +36,16 @@
 
     > * {
       width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .item-details {
+    grid-template-columns: 1fr;
+
+    .details {
+      margin-right: 0rem;
     }
   }
 }

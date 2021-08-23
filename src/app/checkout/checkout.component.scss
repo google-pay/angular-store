@@ -49,4 +49,8 @@ form {
   form {
     grid-template-columns: 1fr;
   }
+
+  .buttons {
+    grid-column: 1;
+  }
 }
