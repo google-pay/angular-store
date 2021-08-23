@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "predeploy": ["npm run build"],
+    "public": "dist/angular-store",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
