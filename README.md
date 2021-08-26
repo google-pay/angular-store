@@ -1,6 +1,10 @@
-# AngularStore
+_This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2._
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+# Sample Angular T-Shirt Store
+
+The purpose this repository is to showcase the Google Pay integration in a store built with Angular.
+
+A version of this repository has been deployed to https://payments-angular-store.web.app/.
 
 ## Development server
 
