@@ -18,6 +18,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StoreService } from '../store.service';
 import { NgForm } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-checkout',
@@ -42,10 +43,39 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(event: Event, form: NgForm) {
+  async onSubmit(event: Event, form: NgForm) {
     event.preventDefault();
 
-    this.storeService.setCart([]);
-    this.router.navigate(['/confirm']);
+    this.storeService
+      .getCart()
+      .pipe(first())
+      .subscribe(
+        async cartItems => {
+          await this.storeService.processOrder(cartItems, {
+            shippingAddress: {
+              address1: this.address1,
+              address2: this.address2,
+              administrativeArea: this.state,
+              countryCode: this.country,
+              locality: this.city,
+              postalCode: this.zip,
+            },
+            paymentMethodData: {
+              type: 'CARD_NUMBER',
+              card: {
+                csc: this.cvv,
+                exp: this.expDate,
+                name: this.cardName,
+                number: this.cardNumber,
+              },
+            },
+          });
+        },
+        error => {},
+        () => {
+          this.storeService.setCart([]);
+          this.router.navigate(['/confirm']);
+        },
+      );
   }
 }

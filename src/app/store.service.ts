@@ -155,4 +155,19 @@ export class StoreService {
     this.cartSubject!.next(cart);
     this.setStorage('cart', cart);
   }
+
+  /** Mock service to process order */
+  processOrder(cart: CartItemDetails[], paymentData: any) {
+    console.log(
+      'TODO: send order to server',
+      cart,
+      paymentData.shippingAddress,
+      paymentData.shippingOptionData?.id,
+      paymentData.paymentMethodData,
+    );
+
+    return Promise.resolve({
+      orderId: Date.now().valueOf().toString(),
+    });
+  }
 }
