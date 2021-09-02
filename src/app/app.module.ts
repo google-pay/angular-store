@@ -43,6 +43,8 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
+import { GooglePayButtonModule } from '@google-pay/button-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +62,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    GooglePayButtonModule,
     HttpClientModule,
     MatBadgeModule,
     MatButtonModule,

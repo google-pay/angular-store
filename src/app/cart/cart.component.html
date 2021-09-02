@@ -55,5 +55,12 @@
   <span class="amount">${{ cartTotal.toFixed(2) }}</span>
 </div>
 <div class="buttons">
+  <google-pay-button
+    environment="TEST"
+    buttonType="buy"
+    buttonSizeMode="fill"
+    [paymentRequest]="paymentRequest"
+    (loadpaymentdata)="onLoadPaymentData($event)"
+  ></google-pay-button>
   <button mat-stroked-button (click)="onCheckout()">Checkout</button>
 </div>

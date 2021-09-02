@@ -37,6 +37,8 @@ export class ItemDetailsComponent implements OnInit {
   quantity = 1;
   quantityOptions = [1, 2, 3, 4, 5];
 
+  paymentRequest!: google.payments.api.PaymentDataRequest;
+
   get itemDescription() {
     return unescapeHtml(this.item.description);
   }
@@ -51,7 +53,41 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.storeService
       .getItem(this.route.snapshot.paramMap.get('listId')!, this.route.snapshot.paramMap.get('itemId')!)
-      .subscribe(item => (this.item = item!));
+      .subscribe(item => {
+        this.item = item!;
+
+        this.paymentRequest = {
+          apiVersion: 2,
+          apiVersionMinor: 0,
+          allowedPaymentMethods: [
+            {
+              type: 'CARD',
+              parameters: {
+                allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                allowedCardNetworks: ['MASTERCARD', 'VISA'],
+              },
+              tokenizationSpecification: {
+                type: 'PAYMENT_GATEWAY',
+                parameters: {
+                  gateway: 'example',
+                  gatewayMerchantId: 'exampleGatewayMerchantId',
+                },
+              },
+            },
+          ],
+          merchantInfo: {
+            merchantId: '17613812255336763067',
+            merchantName: 'Demo Only (you will not be charged)',
+          },
+          transactionInfo: {
+            totalPriceStatus: 'FINAL',
+            totalPriceLabel: 'Total',
+            totalPrice: this.item.price.toFixed(2),
+            currencyCode: 'USD',
+            countryCode: 'US',
+          },
+        };
+      });
   }
 
   onAddToCart() {
@@ -62,5 +98,21 @@ export class ItemDetailsComponent implements OnInit {
     snackbar.onAction().subscribe(() => {
       this.router.navigate(['/cart']);
     });
+  }
+
+  async onLoadPaymentData(event: Event) {
+    const paymentData = (event as CustomEvent<google.payments.api.PaymentData>).detail;
+    await this.storeService.processOrder(
+      [
+        {
+          item: this.item,
+          quantity: this.quantity,
+          size: this.size,
+        },
+      ],
+      paymentData,
+    );
+
+    this.router.navigate(['/confirm']);
   }
 }

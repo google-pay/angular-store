@@ -26,6 +26,38 @@ import { CartItemDetails, StoreService } from '../store.service';
 export class CartComponent implements OnInit {
   cart: CartItemDetails[] = [];
 
+  paymentRequest: google.payments.api.PaymentDataRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    allowedPaymentMethods: [
+      {
+        type: 'CARD',
+        parameters: {
+          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['MASTERCARD', 'VISA'],
+        },
+        tokenizationSpecification: {
+          type: 'PAYMENT_GATEWAY',
+          parameters: {
+            gateway: 'example',
+            gatewayMerchantId: 'exampleGatewayMerchantId',
+          },
+        },
+      },
+    ],
+    merchantInfo: {
+      merchantId: '17613812255336763067',
+      merchantName: 'Demo Only (you will not be charged)',
+    },
+    transactionInfo: {
+      totalPriceStatus: 'FINAL',
+      totalPriceLabel: 'Total',
+      totalPrice: this.cartTotal.toFixed(2),
+      currencyCode: 'USD',
+      countryCode: 'US',
+    },
+  };
+
   get cartSize() {
     return this.cart.reduce((total, item) => total + item.quantity, 0);
   }
@@ -39,6 +71,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.storeService.getCart().subscribe(cart => {
       this.cart = cart;
+
+      this.paymentRequest.transactionInfo.totalPrice = this.cartTotal.toFixed(2);
     });
   }
 
@@ -53,5 +87,13 @@ export class CartComponent implements OnInit {
   onQuantityChange(event: Event, cartItem: CartItemDetails) {
     const input = event.target as HTMLInputElement;
     this.storeService.updateCartItemQuantity({ ...cartItem, quantity: input.valueAsNumber });
+  }
+
+  async onLoadPaymentData(event: Event) {
+    const paymentData = (event as CustomEvent<google.payments.api.PaymentData>).detail;
+    await this.storeService.processOrder(this.cart, paymentData);
+
+    this.storeService.setCart([]);
+    this.router.navigate(['/confirm']);
   }
 }
