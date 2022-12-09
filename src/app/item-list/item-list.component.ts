@@ -1,11 +1,11 @@
-/**
- * Copyright 2021 Google LLC
+/*
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ import { ItemDetails, StoreService } from '../store.service';
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.scss'],
+  styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent implements OnInit {
   items: ItemDetails[] = [];
@@ -31,6 +31,6 @@ export class ItemListComponent implements OnInit {
   ngOnInit(): void {
     this.storeService
       .getItemsByCategory(this.route.snapshot.paramMap.get('listId')!)
-      .subscribe(items => (this.items = items));
+      .subscribe((items: ItemDetails[]) => (this.items = items));
   }
 }
