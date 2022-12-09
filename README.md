@@ -11,8 +11,8 @@ A deployed version of this app can be found at
 To configure and run this sample app, you will need the following prerequisites
 installed on your workstation:
 
-*   [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-*   [Angular CLI](https://angular.io/guide/setup-local)
+- [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Angular CLI](https://angular.io/guide/setup-local)
 
 ## Setup
 

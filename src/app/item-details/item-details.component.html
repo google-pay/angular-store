@@ -42,8 +42,13 @@ limitations under the License.
       <div [innerHtml]="itemDescription"></div>
     </div>
     <div class="buttons">
-      <google-pay-button environment="TEST" buttonType="buy" buttonSizeMode="fill" [paymentRequest]="paymentRequest"
-        (loadpaymentdata)="onLoadPaymentData($event)"></google-pay-button>
+      <google-pay-button
+        environment="TEST"
+        buttonType="buy"
+        buttonSizeMode="fill"
+        [paymentRequest]="paymentRequest"
+        (loadpaymentdata)="onLoadPaymentData($event)"
+      ></google-pay-button>
       <button mat-stroked-button (click)="onAddToCart()">Add to Cart</button>
     </div>
   </div>

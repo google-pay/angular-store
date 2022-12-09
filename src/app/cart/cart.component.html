@@ -35,8 +35,13 @@ limitations under the License.
       <div class="second-row">
         <mat-form-field class="input app-no-padding" appearance="fill">
           <mat-label>Quantity</mat-label>
-          <input type="number" matInput name="quantity" [value]="item.quantity"
-            (change)="onQuantityChange($event, item)" />
+          <input
+            type="number"
+            matInput
+            name="quantity"
+            [value]="item.quantity"
+            (change)="onQuantityChange($event, item)"
+          />
         </mat-form-field>
         <mat-form-field class="input app-input-no-underline" appearance="fill">
           <mat-label>Size</mat-label>
@@ -54,7 +59,12 @@ limitations under the License.
 </div>
 
 <div class="buttons">
-  <google-pay-button environment="TEST" buttonType="buy" buttonSizeMode="fill" [paymentRequest]="paymentRequest"
-    (loadpaymentdata)="onLoadPaymentData($event)"></google-pay-button>
+  <google-pay-button
+    environment="TEST"
+    buttonType="buy"
+    buttonSizeMode="fill"
+    [paymentRequest]="paymentRequest"
+    (loadpaymentdata)="onLoadPaymentData($event)"
+  ></google-pay-button>
   <button mat-stroked-button (click)="onCheckout()">Checkout</button>
 </div>

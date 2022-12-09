@@ -2,6 +2,8 @@
   "name": "angular-store",
   "version": "0.0.0",
   "scripts": {
+    "pretty": "prettier . --write --loglevel warn",
+    "pretty:check": "prettier . --check",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
