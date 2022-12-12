@@ -1,11 +1,11 @@
-/**
- * Copyright 2021 Google LLC
+/*
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ import { CartItemDetails, StoreService } from '../store.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
   cart: CartItemDetails[] = [];
@@ -34,28 +34,28 @@ export class CartComponent implements OnInit {
         type: 'CARD',
         parameters: {
           allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-          allowedCardNetworks: ['MASTERCARD', 'VISA'],
+          allowedCardNetworks: ['MASTERCARD', 'VISA']
         },
         tokenizationSpecification: {
           type: 'PAYMENT_GATEWAY',
           parameters: {
             gateway: 'example',
-            gatewayMerchantId: 'exampleGatewayMerchantId',
-          },
-        },
-      },
+            gatewayMerchantId: 'exampleGatewayMerchantId'
+          }
+        }
+      }
     ],
     merchantInfo: {
       merchantId: '17613812255336763067',
-      merchantName: 'Demo Only (you will not be charged)',
+      merchantName: 'Demo Only (you will not be charged)'
     },
     transactionInfo: {
       totalPriceStatus: 'FINAL',
       totalPriceLabel: 'Total',
       totalPrice: this.cartTotal.toFixed(2),
       currencyCode: 'USD',
-      countryCode: 'US',
-    },
+      countryCode: 'US'
+    }
   };
 
   get cartSize() {
@@ -71,7 +71,6 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.storeService.getCart().subscribe(cart => {
       this.cart = cart;
-
       this.paymentRequest.transactionInfo.totalPrice = this.cartTotal.toFixed(2);
     });
   }

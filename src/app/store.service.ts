@@ -1,11 +1,11 @@
-/**
- * Copyright 2021 Google LLC
+/*
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,28 +44,28 @@ export interface CartItemDetails {
 const categories: CategoryDetails[] = [
   {
     name: 'mens_outerwear',
-    title: "Men's Outerwear",
-    image: '/assets/images/mens_outerwear.jpg',
+    title: 'Mens Outerwear',
+    image: '/assets/images/categories/mens_outerwear.jpg'
   },
   {
     name: 'ladies_outerwear',
-    title: "Lady's Outerwear",
-    image: '/assets/images/ladies_outerwear.jpg',
+    title: 'Ladies Outerwear',
+    image: '/assets/images/categories/ladies_outerwear.jpg'
   },
   {
     name: 'mens_tshirts',
-    title: "Men's T-Shirts",
-    image: '/assets/images/mens_tshirts.jpg',
+    title: 'Mens T-Shirts',
+    image: '/assets/images/categories/mens_tshirts.jpg'
   },
   {
     name: 'ladies_tshirts',
-    title: "Lady's T-Shirts",
-    image: '/assets/images/ladies_tshirts.jpg',
-  },
+    title: 'Ladies T-Shirts',
+    image: '/assets/images/categories/ladies_tshirts.jpg'
+  }
 ];
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class StoreService {
   private itemsCache: Map<string, Observable<ItemDetails[]>>;
@@ -86,6 +86,7 @@ export class StoreService {
   }
 
   getCategories() {
+    console.log(categories);
     return from([categories]);
   }
 
@@ -112,8 +113,8 @@ export class StoreService {
         {
           item,
           size,
-          quantity,
-        },
+          quantity
+        }
       ];
     } else {
       existing.quantity += quantity;
@@ -163,11 +164,11 @@ export class StoreService {
       cart,
       paymentData.shippingAddress,
       paymentData.shippingOptionData?.id,
-      paymentData.paymentMethodData,
+      paymentData.paymentMethodData
     );
 
     return Promise.resolve({
-      orderId: Date.now().valueOf().toString(),
+      orderId: Date.now().valueOf().toString()
     });
   }
 }

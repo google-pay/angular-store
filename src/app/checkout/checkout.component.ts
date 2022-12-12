@@ -1,11 +1,11 @@
-/**
- * Copyright 2021 Google LLC
+/*
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +23,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
+  styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
   firstName: string = '';
@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
               administrativeArea: this.state,
               countryCode: this.country,
               locality: this.city,
-              postalCode: this.zip,
+              postalCode: this.zip
             },
             paymentMethodData: {
               type: 'CARD_NUMBER',
@@ -66,16 +66,16 @@ export class CheckoutComponent implements OnInit {
                 csc: this.cvv,
                 exp: this.expDate,
                 name: this.cardName,
-                number: this.cardNumber,
-              },
-            },
+                number: this.cardNumber
+              }
+            }
           });
         },
         error => {},
         () => {
           this.storeService.setCart([]);
           this.router.navigate(['/confirm']);
-        },
+        }
       );
   }
 }

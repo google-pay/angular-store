@@ -1,11 +1,11 @@
-/**
- * Copyright 2021 Google LLC
+/*
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,7 +28,7 @@ function unescapeHtml(text: string) {
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.scss'],
+  styleUrls: ['./item-details.component.scss']
 })
 export class ItemDetailsComponent implements OnInit {
   item!: ItemDetails;
@@ -47,7 +47,7 @@ export class ItemDetailsComponent implements OnInit {
     private storeService: StoreService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,28 +64,28 @@ export class ItemDetailsComponent implements OnInit {
               type: 'CARD',
               parameters: {
                 allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-                allowedCardNetworks: ['MASTERCARD', 'VISA'],
+                allowedCardNetworks: ['MASTERCARD', 'VISA']
               },
               tokenizationSpecification: {
                 type: 'PAYMENT_GATEWAY',
                 parameters: {
                   gateway: 'example',
-                  gatewayMerchantId: 'exampleGatewayMerchantId',
-                },
-              },
-            },
+                  gatewayMerchantId: 'exampleGatewayMerchantId'
+                }
+              }
+            }
           ],
           merchantInfo: {
             merchantId: '17613812255336763067',
-            merchantName: 'Demo Only (you will not be charged)',
+            merchantName: 'Demo Only (you will not be charged)'
           },
           transactionInfo: {
             totalPriceStatus: 'FINAL',
             totalPriceLabel: 'Total',
             totalPrice: this.item.price.toFixed(2),
             currencyCode: 'USD',
-            countryCode: 'US',
-          },
+            countryCode: 'US'
+          }
         };
       });
   }
@@ -93,7 +93,7 @@ export class ItemDetailsComponent implements OnInit {
   onAddToCart() {
     this.storeService.addItemToCart(this.item, this.size, this.quantity);
     const snackbar = this.snackBar.open(`${this.item.title} added to cart.`, 'view cart', {
-      duration: 5000,
+      duration: 5000
     });
     snackbar.onAction().subscribe(() => {
       this.router.navigate(['/cart']);
@@ -107,10 +107,10 @@ export class ItemDetailsComponent implements OnInit {
         {
           item: this.item,
           quantity: this.quantity,
-          size: this.size,
-        },
+          size: this.size
+        }
       ],
-      paymentData,
+      paymentData
     );
 
     this.router.navigate(['/confirm']);
